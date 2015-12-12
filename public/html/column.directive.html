@@ -1,0 +1,22 @@
+<div class="offer animated fadeInUp" ng-style="row.style">
+    <span class="grandTotalPrice">{{ row.grandTotalPrice | currency }}</span>
+    <span ng-repeat="flight in row" class="flight">
+        <span ng-if="flight.response" title="{{flight.segmentText}}">
+            <div><span class="totalPrice">{{ flight.response.totalPrice | currency }}</span> <img width="20" src="/images/{{flight.response.airlineLogo}}.png"/> {{ flight.response.airlineName }} - {{ flight.response.duration }}</div>
+            <div>{{ flight.response.destination.startPoint }} ({{ flight.departureAirport }})
+                &nbsp;
+                <span ng-if="flight.stops > 0" class="arrow" ng-repeat="x in flight.response.segments">✈</span>
+                <span ng-if="flight.stops == 0" class="arrow">✈</span>
+                &nbsp;
+                {{ flight.response.destination.endPoint }} ({{ flight.arrivalAirport }})
+            </div>
+            <div class="flightdetails">
+                on <span class="departureDate">{{ flight.departureDate  | date:'MM/dd/yyyy' }}</span><span ng-if="flight.stops == 0">, direct flight</span><span ng-if="flight.stops == 1">, {{flight.stops}} stop</span><span ng-if="flight.stops > 1">, {{flight.stops}} stops</span>
+            </div>
+        </span>
+        <span ng-if="!flight.response">
+            <span ng-if="flight.error">error</span>
+            <span ng-if="!flight.error"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</span>
+        </span>
+    </span>
+</div>

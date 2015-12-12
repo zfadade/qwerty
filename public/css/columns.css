@@ -1,0 +1,110 @@
+html {
+    background-color: #f4f4f4;
+}
+
+body {
+    border-top: 5px solid #ffcb00;
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 120px, #f4f4f4 100%);
+}
+#logo {
+    width: 150px;
+    height: 150px;
+}
+#title {
+    color: #00355f;
+    font-size: 3em;
+    padding-left: 30px;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.15);
+}
+.searchButton {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#column-container {
+    margin-top: 10px;
+    position: relative;
+    transition: height 0.5s;
+    height: 0px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.offer {
+    height: 70px;
+    padding: 4px 2px 0 8px;
+    border: 1px solid #CCCCCC;
+    background: #FFFFFF;
+    transition: all 0.5s;
+    animation-duration: 0.5s;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 98%;
+    border-radius: 4px;
+}
+
+.grandTotalPrice {
+    font-weight: bold;
+    min-width: 120px;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 150%;
+}
+
+.totalPrice {
+    font-weight: bold;
+}
+
+.flight {
+    display: inline-block;
+    min-width: 300px;
+    vertical-align: top;
+}
+.flight img {
+    margin-left: 10px;
+}
+.flight .flightdetails {
+    font-size: 11px;
+}
+.flight .departureDate {
+    font-weight: bold;
+}
+
+.arrow {
+    font-size: 22px;
+    color: #666;
+    line-height: 2px;
+    position: relative;
+    top: 2px;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.segment {
+    font-size: 65%;
+}
+
+.segment .arrow {
+    font-size: 16px;
+    top:2px;
+}
+
+.form-label {
+    display: block;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}

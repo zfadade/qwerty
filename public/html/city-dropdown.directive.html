@@ -1,0 +1,6 @@
+<select data-live-search="true" style="display: none;">
+    <option value="">Select a city...</option>
+    <option ng-repeat="location in cities" value="{{ location.city }}" data-subtext="{{ location.country }}">
+        {{ location.city }}
+    </option>
+</select>

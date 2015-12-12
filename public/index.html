@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="columnsApp">
+<head>
+    <meta charset="utf-8">
+    <title>Nomad &mdash; Itinerary finder</title>
+    <link rel="shortcut icon" type="image/png" href="/images/expedia.png"/>
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lib/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/lib/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/lib/animate.css">
+
+    <!-- Application styles -->
+    <link rel="stylesheet" href="css/columns.css">
+
+    <!-- JavaScript Libraries -->
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/bootstrap-select.min.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="/js/lib/moment.js"></script>
+    <script src="/js/lib/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlYkJoB41p8toYwpDXoNOtXq6KSqdOxOY&signed_in=true"></script>
+
+    <!-- Angular app -->
+    <script src="js/app/app.module.js"></script>
+    <script src="js/app/columns.service.js"></script>
+    <script src="js/app/columns.controller.js"></script>
+    <script src="js/app/column.directive.js"></script>
+
+    <script src="js/app/form.module.js"></script>
+    <script src="js/app/form.controller.js"></script>
+    <script src="js/app/city.service.js"></script>
+    <script src="js/app/city-dropdown.directive.js"></script>
+    <script src="js/app/datepicker.directive.js"></script>
+</head>
+<body ng-controller="ColumnsController as columns">
+    <div class="container-fluid" >
+
+        <img id="logo" src="/images/logo.png" />
+        <label id="title">WHERE DO YOU WANT TO GO ?</label>
+
+        <div class="row" ng-controller="FormController as form">
+            <form class="form-horizontal col-sm-7" style="margin-bottom: 20px;">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label class="form-label">Starting point</label>
+                                <city-dropdown ng-model="form.startDestination"></city-dropdown>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label">Departure date</label>
+                                <date-picker></date-picker>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="form-label"># Adults</label>
+                                <input type="number" class="form-control" ng-model="form.numberOfAdultTravelers">
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="form-group" ng-repeat="destination in form.destinations">
+                            <div class="col-sm-5">
+                                <label class="form-label">Destination</label>
+                                <city-dropdown ng-model="destination"></city-dropdown>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label">Number of days</label>
+                                <input type="number" class="form-control" ng-model="destination.stayDuration">
+                            </div>
+                            <div class="col-sm-3" ng-if="$index != 0">
+                                <label class="form-label">&nbsp;</label>
+                                <button type="button" class="btn btn-default" ng-click="form.deleteRow($index)" title="Remove destination"><i class="glyphicon glyphicon-remove"></i></button>
+                            </div>
+                        </div>
+                        <div style="margin-top: 30px;"></div>
+                        <button type="button" class="btn btn-info" ng-click="form.addDestination()"><i class="glyphicon glyphicon-plus"></i> Add destination</button>
+                        <button type="submit" class="btn btn-primary" ng-click="form.submit()"><i class="glyphicon glyphicon-search"></i> Search</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-body" id="map" ng-init="form.initMap()" ng-style="form.styleMap">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="progress" style="margin-top: 10px; margin-bottom: 10px; display: none;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ columns.percentComplete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ columns.percentComplete }}%">
+                <span class="sr-only">{{ columns.percentComplete }}% Complete</span>
+            </div>
+        </div>
+    </div>
+    <div id="column-container">
+        <column ng-repeat="row in columns.rows" class="resultrow"/>
+    </div>
+    <div class="container">
+        <footer>&copy; 2015 BoneCrushers, Expedia Corp</footer>
+    </div>
+</body>
+</html>
