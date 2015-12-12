@@ -1,4 +1,4 @@
-nomad-web
+QWERTY
 ======================
 
 Expressjs based Node web app sample
@@ -49,11 +49,7 @@ To start the app in any other environment, set NODE_ENV environment valiable to 
 
 
 
-#### [EXPERIMENTAL] DOCKER
-
 ##### Docker Prerequisites
-
-For OS X setup instructions, see: [https://ewegithub.sb.karmalab.net/EWE/docker](https://ewegithub.sb.karmalab.net/EWE/docker)
 
 ##### How to build with Docker?
 
@@ -62,13 +58,13 @@ For OS X setup instructions, see: [https://ewegithub.sb.karmalab.net/EWE/docker]
 ```
 
 ```
-docker build -t nomad-web .
+docker build -t qwerty-web .
 ```
 
 ##### How to run with Docker?
 
 ```
-docker run -e "APP_NAME=nomad-web" -e "EXPEDIA_ENVIRONMENT=dev" -e "ACTIVE_VERSION=$(git rev-parse HEAD)" -p 8080:8080 nomad-web
+docker run -e "APP_NAME=qwerty-web" -e "EXPEDIA_ENVIRONMENT=dev" -e "ACTIVE_VERSION=$(git rev-parse HEAD)" -p 8080:8080 qwerty-web
 ```
 
 Open a browser and hit [http://LOCAL_DOCKER_IP:8080/](http://LOCAL_DOCKER_IP:8080/) (e.g. [http://192.168.99.100:8080](http://192.168.99.100:8080))
